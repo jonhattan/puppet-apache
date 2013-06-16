@@ -1,0 +1,48 @@
+# MANAGED BY PUPPET!
+<% @ips.each do |ip| -%>
+<%   @ports.each do |port| -%>
+<%     if @ensure_www -%>
+<VirtualHost <%= ip %>:<%= port%>>
+  ServerName <%= @source_prefix %><%= @server_name %>
+<%       @server_aliases.each do |server_alias| -%>
+  ServerAlias <%= @source_prefix %><%= server_alias %>
+<%       end -%>
+  Redirect permanent / http://<%= @destination_prefix %><%= @server_name %>/
+</VirtualHost>
+<%     end -%>
+<VirtualHost <%= ip %>:<%= port%>>
+  ServerName <%= @destination_prefix %><%= @server_name %>
+<%     @server_aliases.each do |server_alias| -%>
+  ServerAlias <%= @destination_prefix %><%= server_alias %>
+<%     end -%>
+<%     @vhost_directives.each do |directive| -%>
+  <%= directive %>
+<%     end -%>
+<%     if @doc_root != '' %>
+  DocumentRoot <%= @doc_root %>
+  <Directory <%= @doc_root %>>
+<%       if @dir_options != [] -%>
+    Options<% @dir_options.each do |option| %> <%= option %><% end %>
+<%       end -%>
+    AllowOverride <%= @allow_override %>
+<%       @dir_directives.each do |directive| -%>
+    <%= directive %>
+<%       end -%>
+  </Directory>
+<%     end -%>
+<%     if @server_admin != '' -%>
+  ServerAdmin <%= @server_admin %>
+<%     end -%>
+<%     if @log_level != '' -%>
+  LogLevel <%= @log_level %>
+<%     end -%>
+<%     if @error_log != '' -%>
+  ErrorLog <%= @error_log %>
+<%     end -%>
+<%     if @custom_log != '' -%>
+  CustomLog <%= @custom_log %>
+<%     end -%>
+</VirtualHost>
+<%   end -%>
+<% end -%>
+

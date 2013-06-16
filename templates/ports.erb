@@ -1,0 +1,30 @@
+# MANAGED BY PUPPET!
+
+<% scope.lookupvar('apache::params::ports').each do |port| -%>
+NameVirtualHost *:<%= port %>
+Listen <%= port %>
+# TO-DO: Add support for IP based named hosts
+<% interfaces.split(',').each do |int|
+     if has_variable?("ipaddress_#{int}") then -%>
+#NameVirtualHost <%= scope.lookupvar("ipaddress_#{int}") %>:<%= port %>
+<%   end
+   end -%>
+
+<% end -%>
+
+<IfModule mod_ssl.c>
+    # If you add NameVirtualHost *:443 here, you will also have to change
+    # the VirtualHost statement in /etc/apache2/sites-available/default-ssl
+    # to <VirtualHost *:443>
+    # Server Name Indication for SSL named virtual hosts is currently not
+    # supported by MSIE on Windows XP.
+<% scope.lookupvar('apache::params::ssl_ports').each do |port| -%>
+    Listen <%= port %>
+<% end -%>
+</IfModule>
+
+<IfModule mod_gnutls.c>
+<% scope.lookupvar('apache::params::ssl_ports').each do |port| -%>
+    Listen <%= port %>
+<% end -%>
+</IfModule>
