@@ -49,6 +49,8 @@ class apache::monit (
     @apache::vhost { $hostname:
       ensure         => $ensure,
       priority       => '999',
+#TO-DO: monit SSL
+      ssl_ports      => ''
       doc_root       => $web_dir,
       allow_override => 'None',
       dir_options    => 'None',
