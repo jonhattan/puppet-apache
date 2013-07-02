@@ -1,5 +1,5 @@
 # MANAGED BY PUPPET!
-<% @ips.each do |ip| -%>
+<% @ips_real.each do |ip| -%>
 <%   @ports_real.each do |port| -%>
 <%     if @ensure_www -%>
 <VirtualHost <%= ip %>:<%= port%>>

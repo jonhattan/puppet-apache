@@ -3,7 +3,7 @@ define apache::vhost(
   $server_name      = $name,
   $enabled          = true,
   $priority         = '010',
-  $ips              = [ '*' ],
+  $ips              = '*',
   $content          = '',
   $ensure_www       = undef,
   $ports            = $apache::params::ports,
@@ -33,6 +33,7 @@ define apache::vhost(
 
   $ports_real = any2array($ports)
   $dir_options_real = any2array($dir_options)
+  $ips_real = any2array($ips)
 
 #  #TO-DO: add stdlib to requirements and validate params
 #  $valid_canonical_www = [ 'present', 'absent']
