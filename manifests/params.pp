@@ -22,6 +22,9 @@ class apache::params (
   ],
 ) {
 
+  $ports_real     = any2array($ports)
+  $ssl_ports_real = any2array($ports_ssl)
+
   $ports_file_content = template('apache/ports.erb')
 
   case $::operatingsystem {

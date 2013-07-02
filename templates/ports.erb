@@ -1,6 +1,6 @@
 # MANAGED BY PUPPET!
 
-<% scope.lookupvar('apache::params::ports').each_line do |port| -%>
+<% scope.lookupvar('apache::params::ports_real').each do |port| -%>
 NameVirtualHost *:<%= port %>
 Listen <%= port %>
 # TO-DO: Add support for IP based named hosts
@@ -18,13 +18,13 @@ Listen <%= port %>
     # to <VirtualHost *:443>
     # Server Name Indication for SSL named virtual hosts is currently not
     # supported by MSIE on Windows XP.
-<% scope.lookupvar('apache::params::ssl_ports').each_line do |port| -%>
+<% scope.lookupvar('apache::params::ssl_ports_real').each do |port| -%>
     Listen <%= port %>
 <% end -%>
 </IfModule>
 
 <IfModule mod_gnutls.c>
-<% scope.lookupvar('apache::params::ssl_ports').each_line do |port| -%>
+<% scope.lookupvar('apache::params::ssl_ports_real').each do |port| -%>
     Listen <%= port %>
 <% end -%>
 </IfModule>

@@ -1,6 +1,6 @@
 # MANAGED BY PUPPET!
 <% @ips.each do |ip| -%>
-<%   @ports.each do |port| -%>
+<%   @ports_real.each do |port| -%>
 <%     if @ensure_www -%>
 <VirtualHost <%= ip %>:<%= port%>>
   ServerName <%= @source_prefix %><%= @server_name %>
@@ -21,8 +21,8 @@
 <%     if @doc_root != '' %>
   DocumentRoot <%= @doc_root %>
   <Directory <%= @doc_root %>>
-<%       if @dir_options != [] -%>
-    Options<% @dir_options.each do |option| %> <%= option %><% end %>
+<%       if @dir_options_real != [] -%>
+    Options<% @dir_options_real.each do |option| %> <%= option %><% end %>
 <%       end -%>
     AllowOverride <%= @allow_override %>
 <%       @dir_directives.each do |directive| -%>
