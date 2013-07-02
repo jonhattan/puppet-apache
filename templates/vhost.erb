@@ -60,7 +60,15 @@
 <%     @server_aliases.each do |server_alias| -%>
   ServerAlias <%= @destination_prefix %><%= server_alias %>
 <%     end -%>
+<%     if @ssl_cert_file != '' -%>
   SSLCertificateFile <%= @ssl_cert_file %>
+<%     end -%>
+<%     if @ssl_cert_key_file != '' -%>
+  SSLCertificateKeyFile <%= @ssl_cert_key_file %>
+<%     end -%>
+<%     if @ssl_cert_chain_file != '' -%>
+  SSLCertificateChainFile <%= @ssl_cert_chain_file %>
+<%     end -%>
   SSLEngine on
 <%     @vhost_directives.each do |directive| -%>
   <%= directive %>
