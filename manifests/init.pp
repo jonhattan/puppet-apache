@@ -132,6 +132,7 @@ class apache (
   @apache::vhost { 'shield':
     ensure         => $ensure,
     priority       => '000',
+    ssl_ports      => [],
     doc_root       => $apache::params::web_root_dir,
     allow_override => 'None',
     dir_options    => 'None',
