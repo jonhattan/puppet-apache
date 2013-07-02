@@ -76,7 +76,7 @@ class apache::monit (
       start     => $apache::params::ensure_start,
       net_tests => [{
         'host'     => $hostname,
-        'tcp'      => $apache::params::ports,
+        'tcp'      => $apache::params::ports_real,
         'protocol' => 'HTTP',
       }],
       require   => [
