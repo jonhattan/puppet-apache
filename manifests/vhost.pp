@@ -9,6 +9,7 @@ define apache::vhost(
   $ports            = $apache::params::ports,
 #TO-DO: implement   ssl
   $ssl_ports        = $apache::params::ssl_ports,
+  $ssl_cert_file    = '',
   $server_aliases   = [],
   $vhost_directives = [],
   $doc_root         = '',
@@ -32,6 +33,7 @@ define apache::vhost(
   $file_en_name = "${apache::params::vhost_en_dir}/${priority}_${name}"
 
   $ports_real = any2array($ports)
+  $ssl_ports_real = any2array($ssl_ports)
   $dir_options_real = any2array($dir_options)
   $ips_real = any2array($ips)
 

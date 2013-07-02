@@ -23,7 +23,7 @@ class apache::params (
 ) {
 
   $ports_real     = any2array($ports)
-  $ssl_ports_real = any2array($ports_ssl)
+  $ssl_ports_real = any2array($ssl_ports)
 
   $ports_file_content = template('apache/ports.erb')
 
