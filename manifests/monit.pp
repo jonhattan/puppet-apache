@@ -50,7 +50,7 @@ class apache::monit (
       ensure         => $ensure,
       priority       => '999',
 #TO-DO: monit SSL
-      ssl_ports      => '',
+      ssl_ports      => [],
       doc_root       => $web_dir,
       allow_override => 'None',
       dir_options    => 'None',
