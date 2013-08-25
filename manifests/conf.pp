@@ -1,5 +1,6 @@
 define apache::conf(
   $ensure     = present,
+  $priority   = '010',
   $directives = [],
   $content    = '',
 ) {
@@ -7,7 +8,7 @@ define apache::conf(
 
   Apache::Conf <| |> ~> Service[$apache::params::service_name]
 
-  $file_name = "${apache::params::config_dir}/${name}"
+  $file_name = "${apache::params::config_dir}/${priority}-${name}"
 
 #  #TO-DO: add stdlib to requirements and validate params
 #  $valid_canonical_www = [ 'present', 'absent']
