@@ -1,14 +1,14 @@
 class apache (
   $ensure = 'present',
   $autoupgrade = false
-) {
+) inherits apache::params {
   #TO-DO: control allow directives http://httpd.apache.org/docs/2.2/mod/mod_authz_host.html
-  include apache::params
+  #include apache::params
 
-  $package      = $apache::params::package
-  $config_file  = $apache::params::config_file
-  $config_dir   = $apache::params::config_dir
-  $service_name = $apache::params::service_name
+  #$package      = $apache::params::package
+  #$config_file  = $apache::params::config_file
+  #$config_dir   = $apache::params::config_dir
+  #$service_name = $apache::params::service_name
 
   case $ensure {
     /(present)/: {
