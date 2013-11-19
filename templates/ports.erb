@@ -4,7 +4,7 @@
 NameVirtualHost *:<%= port %>
 Listen <%= port %>
 # TO-DO: Add support for IP based named hosts
-<% interfaces.split(',').each do |int|
+<% @interfaces.split(',').each do |int|
      if has_variable?("ipaddress_#{int}") then -%>
 #NameVirtualHost <%= scope.lookupvar("ipaddress_#{int}") %>:<%= port %>
 <%   end
