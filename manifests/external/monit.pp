@@ -1,4 +1,4 @@
-class apache::monit (
+class apache::external::monit (
   $ensure = $apache::ensure
 ) {
 

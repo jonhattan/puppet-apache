@@ -1,3 +1,5 @@
+import "external/*.pp"
+
 class apache (
   $ensure = 'present',
   $autoupgrade = false
@@ -150,6 +152,6 @@ class apache (
   #TO-DO: realize exporeted vhosts
   Apache::Vhost <| |>
 
-  include apache::monit
-
+  include apache::external::monit
+  include apache::external::munin::node::plugin
 }
