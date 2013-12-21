@@ -4,21 +4,17 @@ class apache::external::munin::node::plugin (
 
   include apache::params
 
-  notify {"--outside---":}
+#  notify {"--outside---":}
 
-  if defined( Class['munin::node'] ) {
+  # We can only check if the classe exists or if it's loaded by the parser before current one
+  if defined( '::munin::node' ) {
     #TO-DO: implement url tests
 
-    notify {"--inside---":}
+#    notify {"--inside---":}
 
     case $::osfamily {
       debian : {
         $required_packages = 'libio-all-lwp-perl'
-        if ! defined(Package['libio-all-lwp-perl']) {
-           package { 'libio-all-lwp-perl' :
-             ensure => $ensure,
-           }
-        }
       }
       default: {
         fail("Unsupported platform: ${::osfamily}")
@@ -43,6 +39,11 @@ class apache::external::munin::node::plugin (
           "env.url http://127.0.0.1:${first_port}/server-status?auto",
         ],
       },
+    }
+
+    @munin::node::plugin::required_package { $required_packages :
+      ensure => $ensure,
+      tag    => $plugins,
     }
 
     @munin::node::plugin { $plugins :
