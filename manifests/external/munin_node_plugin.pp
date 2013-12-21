@@ -10,6 +10,11 @@ class apache::external::munin::node::plugin (
     case $::osfamily {
       debian : {
         $required_packages = 'libio-all-lwp-perl'
+        if ! defined(Package['libio-all-lwp-perl']) {
+           package { 'libio-all-lwp-perl' :
+             ensure => $ensure,
+           }
+        }
       }
       default: {
         fail("Unsupported platform: ${::osfamily}")
@@ -41,6 +46,7 @@ class apache::external::munin::node::plugin (
       required_packages => $required_packages,
       require   => [
         Service[$apache::params::service_name],
+        Package[$required_packages],
       ],
     }
   }
