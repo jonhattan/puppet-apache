@@ -25,7 +25,7 @@ class apache::external::munin::node::plugin (
     # TODO: server status if not defined
     # TODO: specific vhost
     # TODO: add stdlib dependency
-    $first_port = values_at(any2array($apache::params::ports), 1)
+    $first_port = values_at(any2array($apache::params::ports), 0)
 
     @munin::node::plugin::conf { 'apache' :
       ensure => $ensure,
