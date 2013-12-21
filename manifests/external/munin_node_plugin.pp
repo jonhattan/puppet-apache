@@ -4,8 +4,12 @@ class apache::external::munin::node::plugin (
 
   include apache::params
 
-  if defined(Class['munin::node']) {
+  notify {"--outside---":}
+
+  if defined( Class['munin::node'] ) {
     #TO-DO: implement url tests
+
+    notify {"--inside---":}
 
     case $::osfamily {
       debian : {
