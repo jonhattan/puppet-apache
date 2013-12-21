@@ -12,7 +12,7 @@ class apache::external::munin::node::plugin (
         $required_packages = 'libio-all-lwp-perl'
       }
       default: {
-        fail("Unsupported platform: ${::osfamily")
+        fail("Unsupported platform: ${::osfamily}")
       }
     }
 
