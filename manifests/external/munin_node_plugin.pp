@@ -31,8 +31,8 @@ class apache::external::munin::node::plugin (
       ensure => $ensure,
       config => {
         'apache_*' => [
-          "env.url http://127.0.0.1:${first_port}/server-status?auto"
-        ]
+          "env.url http://127.0.0.1:${first_port}/server-status?auto",
+        ],
       },
     }
 
