@@ -38,6 +38,7 @@ define apache::vhost(
   $ssl_ports_real = any2array($ssl_ports)
   $dir_options_real = any2array($dir_options)
   $ips_real = any2array($ips)
+  $server_aliases_real = any2array($server_aliases)
 
 #  #TO-DO: add stdlib to requirements and validate params
 #  $valid_canonical_www = [ 'present', 'absent']
@@ -115,7 +116,7 @@ define apache::vhost(
         },
         default => $host_ent_ip
       },
-      host_aliases => $server_aliases,
+      host_aliases => $server_aliases_real,
     }
   }
 
