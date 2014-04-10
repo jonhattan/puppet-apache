@@ -14,6 +14,7 @@ class apache::params (
     'deflate',
     'dir',
     'env',
+    'expires',
     'mime',
     'negotiation',
     'reqtimeout',
