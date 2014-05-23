@@ -21,6 +21,8 @@ class apache::params (
     'setenvif',
     'status'
   ],
+  $purge_sites_available = false,
+  $purge_sites_enabled = true,
 ) {
 
   $ports_real     = any2array($ports)

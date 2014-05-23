@@ -70,7 +70,7 @@ class apache (
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    purge   => false,
+    purge   => $purge_sites_available,
     require => Package[$apache::params::package],
   }
   file { $apache::params::vhost_en_dir:
@@ -78,7 +78,7 @@ class apache (
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    purge   => true,
+    purge   => $purge_sites_enabled,
     recurse => true,
     require => Package[$apache::params::package],
     notify  => Service[$apache::params::service_name],
